@@ -1,0 +1,18 @@
+logging.register-shutdown-hook: true
+logging.file.clean-history-on-start: true
+logging.file.name: log/spring-webflux-security-custom-authentication-example.log
+# Don't define `logging.file.path` if `logging.file.name` is defined.
+# logging.file.path
+logging.file.max-history: 7
+logging.level.root: DEBUG
+
+# Enable reactive WEB application (WebFlux).
+# https://github.com/spring-projects/spring-boot/issues/22162
+spring.main.web-application-type: REACTIVE
+server.port: 8080
+spring.mvc.servlet.path: /
+server.servlet.context-path: /authentication-example
+spring.webflux.base-path: /authentication-example
+
+server.shutdown: graceful
+spring.lifecycle.timeout-per-shutdown-phase: 30s

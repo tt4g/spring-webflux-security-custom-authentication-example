@@ -1,0 +1,47 @@
+plugins {
+    id "java"
+    id "application"
+
+    id "org.springframework.boot" version "2.3.2.RELEASE"
+    id "io.spring.dependency-management" version "1.0.10.RELEASE"
+}
+
+allprojects {
+    group = "com.github.tt4g.spring.webflux.security.custom.authentication.example"
+    version = "0.1.0"
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        options.release = 11
+        options.encoding = "UTF-8"
+    }
+
+    configurations {
+        // Exclude from org.springframework.boot:spring-boot-starter-test
+        all*.exclude(group: "org.junit.vintage", module: "junit-vintage-engine")
+    }
+}
+
+dependencies {
+    developmentOnly(group: "org.springframework.boot", name: "spring-boot-devtools")
+
+    implementation(group: "org.springframework.boot", name: "spring-boot-starter")
+    implementation(group: "org.springframework.boot", name: "spring-boot-starter-logging")
+    implementation(group: "org.springframework.boot", name: "spring-boot-starter-webflux")
+    implementation(group: "org.springframework.boot", name: "spring-boot-starter-security")
+
+    testImplementation(group: "org.springframework.boot", name: "spring-boot-starter-test")
+}
+
+// plugin: org.springframework.boot
+bootJar {
+    mainClassName = "com.github.tt4g.spring.webflux.security.custom.authentication.example.Application"
+    classifier = "boot"
+}
+
+test {
+    useJUnitPlatform()
+}
