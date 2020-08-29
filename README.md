@@ -2,6 +2,8 @@
 
 Spring WebFlux + Spring Security custom authentication example.
 
+Use Spring Boot 2.3.x with Spring Security 5.3.x.
+
 ## Run
 
 ```bash
