@@ -26,22 +26,22 @@ allprojects {
 }
 
 dependencies {
-    developmentOnly(group: "org.springframework.boot", name: "spring-boot-devtools")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 
-    implementation(group: "org.springframework.boot", name: "spring-boot-starter")
-    implementation(group: "org.springframework.boot", name: "spring-boot-starter-logging")
-    implementation(group: "org.springframework.boot", name: "spring-boot-starter-webflux")
-    implementation(group: "org.springframework.boot", name: "spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-logging")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
-    testImplementation(group: "org.springframework.boot", name: "spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 // plugin: org.springframework.boot
-bootJar {
+tasks.named("bootJar").configure {
     mainClassName = "com.github.tt4g.spring.webflux.security.custom.authentication.example.Application"
-    classifier = "boot"
+    archiveClassifier = "boot"
 }
 
-test {
+tasks.named("test").configure {
     useJUnitPlatform()
 }
