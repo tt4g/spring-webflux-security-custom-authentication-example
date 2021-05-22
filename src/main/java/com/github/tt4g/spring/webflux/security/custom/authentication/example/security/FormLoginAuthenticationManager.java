@@ -18,6 +18,12 @@ public class FormLoginAuthenticationManager implements ReactiveAuthenticationMan
             .flatMap(this::validate)
             // 不明なユーザーの場合は Mono.empty() になり認証に失敗する。
             .filter(this::isKnownUser)
+            .switchIfEmpty(Mono.error(() ->
+                // 認証に失敗したときは
+                // org.springframework.security.core.AuthenticationException を
+                // Reactor のエラーとして返すことでSpring Securityに認証に失敗した事実を
+                // 通達する必要がある。
+                new FormLoginAuthenticationFailedException("Form login authentication failed.")))
             .map(this::authenticated);
     }
 
