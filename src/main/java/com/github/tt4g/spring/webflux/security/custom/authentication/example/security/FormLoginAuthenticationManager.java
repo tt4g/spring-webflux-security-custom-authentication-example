@@ -1,6 +1,5 @@
 package com.github.tt4g.spring.webflux.security.custom.authentication.example.security;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
@@ -23,22 +22,22 @@ public class FormLoginAuthenticationManager implements ReactiveAuthenticationMan
     }
 
     Mono<FormLoginAuthenticationToken> validate(
-            FormLoginAuthenticationToken formLoginAuthenticationToken) {
+        FormLoginAuthenticationToken formLoginAuthenticationToken) {
         // パラメーターエラーなどがある場合は、 ReactiveAuthenticationManager.authenticate() から
         // Mono.error() を返す。
 
         String username = formLoginAuthenticationToken.getUsername();
-        if (StringUtils.isEmpty(username)) {
+        if (!StringUtils.hasLength(username)) {
             return Mono.error(new InvalidFormLoginParameterException("username is empty."));
         }
 
         String password = formLoginAuthenticationToken.getPassword();
-        if (StringUtils.isEmpty(password)) {
+        if (!StringUtils.hasLength(password)) {
             return Mono.error(new InvalidFormLoginParameterException("password is empty."));
         }
 
         String domain = formLoginAuthenticationToken.getDomain();
-        if (StringUtils.isEmpty(domain)) {
+        if (!StringUtils.hasLength(domain)) {
             return Mono.error(new InvalidFormLoginParameterException("domain is empty."));
         }
 
