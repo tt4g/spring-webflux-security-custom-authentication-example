@@ -1,10 +1,10 @@
 logging.register-shutdown-hook: true
-logging.file.clean-history-on-start: true
 logging.file.name: log/spring-webflux-security-custom-authentication-example.log
 # Don't define `logging.file.path` if `logging.file.name` is defined.
-# logging.file.path
-logging.file.max-history: 7
+#logging.file.path
 logging.level.root: DEBUG
+logging.logback.rollingpolicy.max-history: 7
+logging.logback.rollingpolicy.clean-history-on-start: true
 
 # For more details Request logging.
 spring.mvc.log-request-details: true
