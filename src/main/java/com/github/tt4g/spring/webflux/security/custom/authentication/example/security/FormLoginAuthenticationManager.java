@@ -46,7 +46,7 @@ public class FormLoginAuthenticationManager implements ReactiveAuthenticationMan
 
     boolean isKnownUser(FormLoginAuthenticationToken formLoginAuthenticationToken) {
         return "user".equals(formLoginAuthenticationToken.getUsername())
-            && "user".equals(formLoginAuthenticationToken.getPassword());
+            && "password".equals(formLoginAuthenticationToken.getPassword());
     }
 
     FormLoginUserAuthentication authenticated(FormLoginAuthenticationToken formLoginAuthenticationToken) {
